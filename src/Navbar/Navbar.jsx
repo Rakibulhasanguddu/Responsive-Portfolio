@@ -1,7 +1,8 @@
 
-
+import {FaGithubSquare, FaInstagramSquare, FaLinkedin} from "react-icons/fa";
+import {FiMessageCircle} from "react-icons/fi";
 // react icons
-import { FaDiscord } from "react-icons/fa";
+
 
 import { TbBrandGithubFilled } from "react-icons/tb";
 import { CiMenuFries } from "react-icons/ci";
@@ -11,6 +12,7 @@ import { Link, NavLink } from "react-router-dom";
 const Navbar = () => {
     const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false)
     const [isActive, setIsActive] = useState(1);
+    const [isProfileHovered, setIsProfileHovered] = useState(false);
     return (
         <div className="mt-2 lg:ml-[300px] lg:mr-[300px] mr-5  ml-5">
             <nav className="flex items-center justify-between w-full relative text-black">
@@ -34,13 +36,74 @@ const Navbar = () => {
                 <div className="flex items-center gap-[20px]">
 
 
-                    <FaDiscord
-                        className="text-[1.6rem] text-textc cursor-pointer hover:text-primary transition-all duration-500 " />
+                   
                    <Link to='https://github.com/Rakibulhasanguddu' target="https://github.com/Rakibulhasanguddu"> <TbBrandGithubFilled
                         className="text-[1.6rem] text-textc cursor-pointer hover:text-primary transition-all duration-500" /></Link>
+<div className="relative w-fit h-full flex items-center justify-center"
+             onMouseEnter={() => setIsProfileHovered(true)}
+             onMouseLeave={() => setIsProfileHovered(false)}
+        >
+            {/*  initial profile picture  */}
+            <img
+                src="https://i.postimg.cc/wB80Mgzb/profile-pic-1.png"
+                alt="profile"
+                className="w-[50px] h-[50px] rounded-full object-cover border-[3px] cursor-pointer border-[#3B9DF8]"/>
 
+            {/*  tooltip  */}
+            <div
+                className={` ${isProfileHovered ? "opacity-100 z-20 translate-y-0" : "opacity-0 z-[-1] translate-y-[20px]"} absolute -top-[-70px] left-[50%] transform translate-x-[-50%] bg-white w-[250px] rounded-md p-[15px] shadow-md transition-all duration-300`}>
+
+                {/*  socials  */}
+                <div
+                    className="flex items-center justify-between border-b border-gray-200 pb-[7px]">
+                    <p className="text-[1rem] font-[600] text-gray-700">Socials</p>
+                    <div className="flex items-center gap-[8px]">
+                        <a href="https://www.linkedin.com/in/rakibul-hasan-guddu/" target="https://www.linkedin.com/in/rakibul-hasan-guddu/">
+                            <FaLinkedin
+                                className="text-[1.3rem] text-gray-700 hover:text-[#3B9DF8] cursor-pointer hover:scale-[1.2] transition-all duration-200 ease-out"/>
+                        </a>
+                        <a href="https://github.com/Rakibulhasanguddu" target="https://github.com/Rakibulhasanguddu">
+                            <FaGithubSquare
+                                className="text-[1.3rem] text-gray-700 hover:text-[#3B9DF8] cursor-pointer hover:scale-[1.2] transition-all duration-200 ease-out"/>
+                        </a>
+                        <a href="https://www.instagram.com/rakibul_hasan_guddu/" target="https://www.instagram.com/rakibul_hasan_guddu/">
+                            <FaInstagramSquare
+                                className="text-[1.3rem] text-gray-700 hover:text-[#3B9DF8] cursor-pointer hover:scale-[1.2] transition-all duration-200 ease-out"/>
+                        </a>
+                    </div>
+                </div>
+
+                {/*  account details  */}
+                <div className="flex items-center justify-center flex-col mt-5">
+                    <div className="relative">
+                        <img
+                            src="https://i.postimg.cc/wB80Mgzb/profile-pic-1.png"
+                            alt="profile"
+                            className="w-[80px] h-[80px] rounded-full object-cover"/>
+                        <div
+                            className="w-[10px] h-[10px] rounded-full bg-green-400 absolute top-[7px] right-[8px] border-[2px] border-white"></div>
+                    </div>
+                    <h4 className="text-[1.1rem] font-[600] text-gray-700 mt-2">Rakibul Hasan
+                       </h4>
+                    <p className="text-[0.8rem] text-gray-600">Programmer</p>
+                </div>
+
+                {/*  send message  */}
+                <button
+                    className="flex mx-auto hover:underline items-center gap-[8px] font-[500] text-[0.9rem] text-[#3B9DF8] mt-4">
+                    <FiMessageCircle className="text-[1.1rem]"/>
+                    Send Message
+                </button>
+
+                {/*  bottom arrow  */}
+                <div
+                    className="bg-orange-400 w-[15px] h-[15px] rotate-[45deg] absolute bottom-[-7px] left-[50%] transform translate-x-[-50%]"></div>
+            </div>
+        </div>
                     <CiMenuFries className="text-[1.6rem] text-black cursor-pointer lg:hidden flex"
                         onClick={() => setMobileSidebarOpen(!mobileSidebarOpen)} />
+
+
                 </div>
 
                 <aside
@@ -55,7 +118,7 @@ const Navbar = () => {
                         <NavLink to='/skill'><li className="hover:border-b-primary border-b-[2px] border-transparent transition-all duration-500 cursor-pointer capitalize">Skills</li></NavLink>
                        
                         {/* <li className="hover:border-b-primary border-b-[2px] border-transparent transition-all duration-500 cursor-pointer capitalize">Certificate</li> */}
-                        <li className="hover:border-b-primary border-b-[2px] border-transparent transition-all duration-500 cursor-pointer capitalize">Resume</li>
+                      <NavLink to='/resume'>  <li className="hover:border-b-primary border-b-[2px] border-transparent transition-all duration-500 cursor-pointer capitalize">Resume</li></NavLink>
                     </ul>
                 </aside>
             </nav>
